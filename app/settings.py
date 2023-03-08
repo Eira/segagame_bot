@@ -12,5 +12,5 @@ class AppSettings(BaseSettings):
 
 
 app_settings = AppSettings(
-    _env_file=os.path.join(os.path.dirname(__file__), '..', '.env'),
+    _env_file=os.path.join(os.path.dirname(__file__), '..', '.env'),  # type: ignore
 )

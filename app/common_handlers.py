@@ -1,29 +1,24 @@
 """Common bot handlers."""
 
 from aiogram import types
-from aiogram.utils.markdown import link
 
-from app.buttons import SHOW_INFO_BUTTON, BUY_TOKEN_BUTTON, SHOW_VIDEO_BUTTON, SHOW_CHATS_BUTTON, DRAW_BUTTON
+from app.buttons import BUY_TOKEN_BUTTON, DRAW_BUTTON, SHOW_CHATS_BUTTON, SHOW_INFO_BUTTON, SHOW_VIDEO_BUTTON
 
 
 async def send_welcome(message: types.Message) -> None:
     """Greeting user when user sends `/start` or `/help` command."""
-    answer_text = 'Hi!'
-
-    button_show_info = types.KeyboardButton(SHOW_INFO_BUTTON)
-    button_buy_token = types.KeyboardButton(BUY_TOKEN_BUTTON)
-    button_video = types.KeyboardButton(SHOW_VIDEO_BUTTON)
-    button_chats = types.KeyboardButton(SHOW_CHATS_BUTTON)
-    button_draw = types.KeyboardButton(DRAW_BUTTON)
+    answer_text = 'Welcome!'
 
     markup = types.ReplyKeyboardMarkup(
         resize_keyboard=True,
     ).row(
-        button_show_info, button_buy_token,
+        types.KeyboardButton(SHOW_INFO_BUTTON),
+        types.KeyboardButton(BUY_TOKEN_BUTTON),
     ).row(
-        button_video, button_chats,
+        types.KeyboardButton(SHOW_VIDEO_BUTTON),
+        types.KeyboardButton(SHOW_CHATS_BUTTON),
     ).add(
-        button_draw,
+        types.KeyboardButton(DRAW_BUTTON),
     )
 
     await message.answer(answer_text, reply_markup=markup)
@@ -49,6 +44,7 @@ async def show_info(message: types.Message) -> None:
 
 
 async def buy_token(message: types.Message) -> None:
+    """Show info about buying token."""
     answer_text = """
 📈 [DEX Tools](https://www.dextools.io/app/ru/bnb/pair-explorer/0x26d7b2c715ed42adbeb0e0fd989eadacf5167ead) (для просмотра графика токена).
 🐰 [Pancake Swap](https://pancakeswap.finance/swap?outputCurrency=0xCfc9854c77dC73C39F94E597371712Ba15de6eD2&inputCurrency=BNB) (для покупки и обмена токена).
@@ -59,6 +55,7 @@ async def buy_token(message: types.Message) -> None:
 
 
 async def show_video(message: types.Message) -> None:
+    """Show video."""
     answer_text = """
      видео обучающие
     """
@@ -67,6 +64,7 @@ async def show_video(message: types.Message) -> None:
 
 
 async def show_chats(message: types.Message) -> None:
+    """Show links to other chats."""
     answer_text = """
         чатами и каналами в тг
     """
@@ -75,6 +73,7 @@ async def show_chats(message: types.Message) -> None:
 
 
 async def show_draw(message: types.Message) -> None:
+    """Show condotoins of draw."""
     answer_text = """
  нужно чтобы человек подписывался на соц сети, нажимал "готово" и ему за это падал приз
     """

@@ -1,5 +1,5 @@
 [flake8]
-max-line-length = 125
+max-line-length = 160
 
 ignore =
     DAR101,  # Missing parameter(s) in Docstring
@@ -11,6 +11,7 @@ ignore =
     S410,    # Using etree to parse untrusted XML data is known to be vulnerable to XML attacks.
     WPS226,  # Found string literal over-use: title > 3
     DAR401,  # Missing exception(s) in Raises section: -r RuntimeError
+    S105  # Possible hardcoded password
 
 
 per-file-ignores =
