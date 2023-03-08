@@ -1,6 +1,8 @@
 # segagame_bot
 Simple bot for the project SegaGame.
 
+### Links
+[Stage bot](t.me/SegaGame_stage_bot)
 
 ### Local setup
 ```shell
