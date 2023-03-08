@@ -12,6 +12,12 @@ $ pip install -U poetry
 $ poetry install
 ```
 
+### Local run Telegram bot
+```
+python -m app.bot_runner
+```
+
+
 ### Local run tests
 ```shell
 $ python -m pytest
