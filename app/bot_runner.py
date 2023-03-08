@@ -1,10 +1,10 @@
 """Bot runner."""
 import logging
 
-from aiogram import Bot, Dispatcher
+from aiogram import Bot, Dispatcher, filters
 from aiogram.utils import executor
 
-from app import common_handlers
+from app import common_handlers, buttons
 from app.settings import app_settings
 
 bot = Bot(token=app_settings.bot_token)
@@ -14,6 +14,27 @@ def main() -> None:
     """Telegram bot app runner."""
     router = Dispatcher(bot)
     router.register_message_handler(common_handlers.send_welcome, commands=['start', 'help'])
+
+    router.register_message_handler(
+        common_handlers.show_info,
+        filters.Text(equals=buttons.SHOW_INFO_BUTTON, ignore_case=True),
+    )
+    router.register_message_handler(
+        common_handlers.buy_token,
+        filters.Text(equals=buttons.BUY_TOKEN_BUTTON, ignore_case=True),
+    )
+    router.register_message_handler(
+        common_handlers.show_video,
+        filters.Text(equals=buttons.SHOW_VIDEO_BUTTON, ignore_case=True),
+    )
+    router.register_message_handler(
+        common_handlers.show_chats,
+        filters.Text(equals=buttons.SHOW_CHATS_BUTTON, ignore_case=True),
+    )
+    router.register_message_handler(
+        common_handlers.show_draw,
+        filters.Text(equals=buttons.DRAW_BUTTON, ignore_case=True),
+    )
 
     executor.start_polling(router, skip_updates=True)
 
