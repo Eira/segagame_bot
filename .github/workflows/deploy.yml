@@ -30,6 +30,7 @@ jobs:
 
           scp: |-
             './app/*' => $TARGET_DIR/app/
+            './assets/*' => $TARGET_DIR/assets/
             ./poetry.lock => $TARGET_DIR
             ./pyproject.toml => $TARGET_DIR
 
