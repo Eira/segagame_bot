@@ -31,10 +31,10 @@ def main() -> None:
         common_handlers.show_chats,
         filters.Text(equals=buttons.SHOW_CHATS_BUTTON, ignore_case=True),
     )
-#    router.register_message_handler(
-#        common_handlers.show_draw,
-#        filters.Text(equals=buttons.DRAW_BUTTON, ignore_case=True),
-#    )
+    router.register_message_handler(
+       common_handlers.show_draw,
+       filters.Text(equals=buttons.DRAW_BUTTON, ignore_case=True),
+    )
 
     executor.start_polling(router, skip_updates=True)
 

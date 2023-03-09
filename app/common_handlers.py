@@ -3,7 +3,7 @@
 from aiogram import types
 
 from app.bot_runner import bot
-from app.buttons import BUY_TOKEN_BUTTON, DRAW_BUTTON, SHOW_CHATS_BUTTON, SHOW_INFO_BUTTON, SHOW_VIDEO_BUTTON
+from app.buttons import BUY_TOKEN_BUTTON, SHOW_CHATS_BUTTON, SHOW_INFO_BUTTON, SHOW_VIDEO_BUTTON
 from app.settings import app_settings
 
 
@@ -11,19 +11,7 @@ async def send_welcome(message: types.Message) -> None:
     """Greeting user when user sends `/start` or `/help` command."""
     answer_text = 'Добро пожаловать в сообщество SegaGameClub!'
 
-    markup = types.ReplyKeyboardMarkup(
-        resize_keyboard=True,
-    ).row(
-        types.KeyboardButton(SHOW_INFO_BUTTON),
-        types.KeyboardButton(BUY_TOKEN_BUTTON),
-    ).row(
-        types.KeyboardButton(SHOW_VIDEO_BUTTON),
-        types.KeyboardButton(SHOW_CHATS_BUTTON),
-    ).add(
-        types.KeyboardButton(DRAW_BUTTON),
-    )
-
-    await message.answer(answer_text, reply_markup=markup)
+    await message.answer(answer_text, reply_markup=_get_keyboard())
 
 
 async def show_info(message: types.Message) -> None:
@@ -49,7 +37,12 @@ async def show_info(message: types.Message) -> None:
 ✅ [Telegram RU](https://t.me/segagameclub_channel_ru)
     """
 
-    await message.answer(answer_text, parse_mode='Markdown', disable_web_page_preview=True)
+    await message.answer(
+        answer_text,
+        parse_mode='Markdown',
+        disable_web_page_preview=True,
+        reply_markup=_get_keyboard(),
+    )
 
 
 async def buy_token(message: types.Message) -> None:
@@ -72,6 +65,7 @@ async def buy_token(message: types.Message) -> None:
         photo=photo,
         caption=answer_text,
         parse_mode='Markdown',
+        reply_markup=_get_keyboard(),
     )
 
 
@@ -87,13 +81,23 @@ async def show_video(message: types.Message) -> None:
         caption=answer_text,
         parse_mode='markdown',
     )
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_2.MP4'))
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_3.MP4'))
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_4.MP4'))
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_5.MP4'))
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_6.MP4'))
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_2.MP4'),
+    )
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_3.MP4'),
+    )
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_4.MP4'),
+    )
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_5.MP4'),
+    )
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_6.MP4'),
+    )
 
-    await message.answer_media_group(media=media,)
+    await message.answer_media_group(media=media)
 
 
 async def show_chats(message: types.Message) -> None:
@@ -109,7 +113,12 @@ async def show_chats(message: types.Message) -> None:
 🇰🇿 [Telegram Chat_KZ](https://t.me/segagamekz)
     """
 
-    await message.answer(answer_text, parse_mode='Markdown', disable_web_page_preview=True)
+    await message.answer(
+        answer_text,
+        parse_mode='Markdown',
+        disable_web_page_preview=True,
+        reply_markup=_get_keyboard(),
+    )
 
 
 async def show_draw(message: types.Message) -> None:
@@ -118,4 +127,20 @@ async def show_draw(message: types.Message) -> None:
  нужно чтобы человек подписывался на соц сети, нажимал "готово" и ему за это падал приз
     """
 
-    await message.answer(answer_text)
+    await message.answer(
+        answer_text,
+        reply_markup=_get_keyboard(),
+    )
+
+
+def _get_keyboard():
+    markup = types.ReplyKeyboardMarkup(
+        resize_keyboard=True,
+    ).row(
+        types.KeyboardButton(SHOW_INFO_BUTTON),
+        types.KeyboardButton(BUY_TOKEN_BUTTON),
+    ).row(
+        types.KeyboardButton(SHOW_VIDEO_BUTTON),
+        types.KeyboardButton(SHOW_CHATS_BUTTON),
+    )
+    return markup
