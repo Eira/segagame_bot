@@ -83,7 +83,7 @@ async def show_video(message: types.Message) -> None:
     media = types.MediaGroup()
 
     media.attach_video(
-        types.InputFile(f'{app_settings.assets_path}/video_2.MP4'),
+        types.InputFile(f'{app_settings.assets_path}/video_1.MP4'),
         caption=answer_text,
         parse_mode='markdown',
     )
