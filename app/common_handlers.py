@@ -19,8 +19,6 @@ async def send_welcome(message: types.Message) -> None:
     ).row(
         types.KeyboardButton(SHOW_VIDEO_BUTTON),
         types.KeyboardButton(SHOW_CHATS_BUTTON),
-    ).add(
-        types.KeyboardButton(DRAW_BUTTON),
     )
 
     await message.answer(answer_text, reply_markup=markup)
@@ -87,11 +85,21 @@ async def show_video(message: types.Message) -> None:
         caption=answer_text,
         parse_mode='markdown',
     )
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_2.MP4'))
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_3.MP4'))
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_4.MP4'))
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_5.MP4'))
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_6.MP4'))
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_2.MP4'),
+    )
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_3.MP4'),
+    )
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_4.MP4'),
+    )
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_5.MP4'),
+    )
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_6.MP4'),
+    )
 
     await message.answer_media_group(media=media,)
 
