@@ -77,21 +77,23 @@ async def buy_token(message: types.Message) -> None:
 
 async def show_video(message: types.Message) -> None:
     """Show video."""
-    answer_text = """
-     Долгожданные видео инструкции SegaGameClub!
-    """
+    answer_text = "*Долгожданные видео инструкции SegaGameClub!*"
 
     await types.ChatActions.upload_video()
     media = types.MediaGroup()
 
-#    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_1.MP4'), answer_text)
-    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_2.MP4'), answer_text)
+    media.attach_video(
+        types.InputFile(f'{app_settings.assets_path}/video_2.MP4'),
+        caption=answer_text,
+        parse_mode='markdown',
+    )
+    media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_2.MP4'))
     media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_3.MP4'))
     media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_4.MP4'))
     media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_5.MP4'))
     media.attach_video(types.InputFile(f'{app_settings.assets_path}/video_6.MP4'))
 
-    await message.reply_media_group(media=media)
+    await message.answer_media_group(media=media,)
 
 
 async def show_chats(message: types.Message) -> None:
