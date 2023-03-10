@@ -11,17 +11,7 @@ async def send_welcome(message: types.Message) -> None:
     """Greeting user when user sends `/start` or `/help` command."""
     answer_text = 'Добро пожаловать в сообщество SegaGameClub!'
 
-    markup = types.ReplyKeyboardMarkup(
-        resize_keyboard=True,
-    ).row(
-        types.KeyboardButton(SHOW_INFO_BUTTON),
-        types.KeyboardButton(BUY_TOKEN_BUTTON),
-    ).row(
-        types.KeyboardButton(SHOW_VIDEO_BUTTON),
-        types.KeyboardButton(SHOW_CHATS_BUTTON),
-    )
-
-    await message.answer(answer_text, reply_markup=markup)
+    await message.answer(answer_text, reply_markup=_get_keyboard())
 
 
 async def show_info(message: types.Message) -> None:
@@ -47,7 +37,12 @@ async def show_info(message: types.Message) -> None:
 ✅ [Telegram RU](https://t.me/segagameclub_channel_ru)
     """
 
-    await message.answer(answer_text, parse_mode='Markdown', disable_web_page_preview=True)
+    await message.answer(
+        answer_text,
+        parse_mode='Markdown',
+        disable_web_page_preview=True,
+        reply_markup=_get_keyboard(),
+    )
 
 
 async def buy_token(message: types.Message) -> None:
@@ -70,6 +65,7 @@ async def buy_token(message: types.Message) -> None:
         photo=photo,
         caption=answer_text,
         parse_mode='Markdown',
+        reply_markup=_get_keyboard(),
     )
 
 
@@ -117,13 +113,34 @@ async def show_chats(message: types.Message) -> None:
 🇰🇿 [Telegram Chat_KZ](https://t.me/segagamekz)
     """
 
-    await message.answer(answer_text, parse_mode='Markdown', disable_web_page_preview=True)
+    await message.answer(
+        answer_text,
+        parse_mode='Markdown',
+        disable_web_page_preview=True,
+        reply_markup=_get_keyboard(),
+    )
 
 
 async def show_draw(message: types.Message) -> None:
-    """Show condotoins of draw."""
+    """Show conditions of draw."""
     answer_text = """
  нужно чтобы человек подписывался на соц сети, нажимал "готово" и ему за это падал приз
     """
 
-    await message.answer(answer_text)
+    await message.answer(
+        answer_text,
+        reply_markup=_get_keyboard(),
+    )
+
+
+def _get_keyboard() -> types.ReplyKeyboardMarkup:
+    """Return the keyboard markup."""
+    return types.ReplyKeyboardMarkup(
+        resize_keyboard=True,
+    ).row(
+        types.KeyboardButton(SHOW_INFO_BUTTON),
+        types.KeyboardButton(BUY_TOKEN_BUTTON),
+    ).row(
+        types.KeyboardButton(SHOW_VIDEO_BUTTON),
+        types.KeyboardButton(SHOW_CHATS_BUTTON),
+    )
