@@ -1,0 +1,44 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: deploy
+        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+        env:
+          TARGET_DIR: /home/${{ secrets.SSH_USERNAME }}
+          VENV_BIN: venv/bin
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USERNAME }}
+          pass: ${{ secrets.SSH_PASSWORD }}
+          port: 22
+          connect_timeout: 10s
+          first_ssh: |-
+            mkdir -p app
+            mkdir -p assets
+            mkdir -p logs
+            test -d venv || python3.11 -m venv venv
+
+          scp: |-
+            './app/*' => $TARGET_DIR/app/
+            './assets/*' => $TARGET_DIR/assets/
+            ./poetry.lock => $TARGET_DIR
+            ./pyproject.toml => $TARGET_DIR
+
+          last_ssh: |-
+            $VENV_BIN/pip install --no-cache-dir poetry pip setuptools --upgrade
+            $VENV_BIN/poetry config virtualenvs.create false --local
+            $VENV_BIN/poetry install --no-dev
+            $VENV_BIN/pip cache purge
+            echo 'bot_token=${{ secrets.TELEGRAM_BOT_TOKEN }}' > .env
+            supervisorctl restart segagame:*
