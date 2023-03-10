@@ -11,7 +11,7 @@ ignore =
     S410,    # Using etree to parse untrusted XML data is known to be vulnerable to XML attacks.
     WPS226,  # Found string literal over-use: title > 3
     DAR401,  # Missing exception(s) in Raises section: -r RuntimeError
-    S105  # Possible hardcoded password
+    S105     # Possible hardcoded password
 
 
 per-file-ignores =
@@ -19,5 +19,3 @@ per-file-ignores =
     #  WPS425:  Found boolean non-keyword argument: False
     app/settings.py: WPS432, WPS425
 
-    #  Found line with high Jones Complexity: 15 > 14
-    app/scale_group.py: WPS221

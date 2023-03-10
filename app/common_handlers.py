@@ -3,7 +3,7 @@
 from aiogram import types
 
 from app.bot_runner import bot
-from app.buttons import BUY_TOKEN_BUTTON, DRAW_BUTTON, SHOW_CHATS_BUTTON, SHOW_INFO_BUTTON, SHOW_VIDEO_BUTTON
+from app.buttons import BUY_TOKEN_BUTTON, SHOW_CHATS_BUTTON, SHOW_INFO_BUTTON, SHOW_VIDEO_BUTTON
 from app.settings import app_settings
 
 
@@ -29,7 +29,7 @@ async def show_info(message: types.Message) -> None:
     answer_text = """
 *SegaGameClub* — это игровое сообщество, объединившее в себе игровое комьюнити и разработчиков игр Play2Earn, в одну экосистему.
 Наша бизнес-модель создает мощную синергию между вами, сообществом и партнерами сообщества.
- 
+
 *Конечная цель* - стать крупнейшим и самым быстрорастущим игровым сообществом в мире.
 
 Главные ссылки *SegaGameClub*:
@@ -75,7 +75,7 @@ async def buy_token(message: types.Message) -> None:
 
 async def show_video(message: types.Message) -> None:
     """Show video."""
-    answer_text = "*Долгожданные видео инструкции SegaGameClub!*"
+    answer_text = '*Долгожданные видео инструкции SegaGameClub!*'
 
     await types.ChatActions.upload_video()
     media = types.MediaGroup()
@@ -101,7 +101,7 @@ async def show_video(message: types.Message) -> None:
         types.InputFile(f'{app_settings.assets_path}/video_6.MP4'),
     )
 
-    await message.answer_media_group(media=media,)
+    await message.answer_media_group(media=media)
 
 
 async def show_chats(message: types.Message) -> None:
