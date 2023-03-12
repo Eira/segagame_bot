@@ -9,5 +9,4 @@ async def test_buy_token_smoke(mocker):
 
     await buy_token(message_mock)
 
-    assert True
     assert mock.call_count == 1

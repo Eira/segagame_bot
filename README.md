@@ -1,6 +1,7 @@
 # segagame_bot
 
 [![linters](https://github.com/Eira/segagame_bot/actions/workflows/linters.yml/badge.svg?branch=main)](https://github.com/Eira/segagame_bot/actions/workflows/linters.yml)
+[![tests](https://github.com/Eira/segagame_bot/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/Eira/segagame_bot/actions/workflows/tests.yml)
 
 Simple bot for the project SegaGame.
 
@@ -20,6 +21,11 @@ $ poetry install
 ### Local run Telegram bot
 ```
 python -m app.bot_runner
+```
+
+### Local run tests
+```shell
+$ python -m pytest
 ```
 
 ### Local run linters

@@ -8,4 +8,4 @@ async def test_show_chats_smoke():
 
     await show_chats(message_mock)
 
-    assert True
+    assert message_mock.answer.call_count == 1
