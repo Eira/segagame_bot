@@ -2,6 +2,7 @@
 
 [![linters](https://github.com/Eira/segagame_bot/actions/workflows/linters.yml/badge.svg?branch=main)](https://github.com/Eira/segagame_bot/actions/workflows/linters.yml)
 [![tests](https://github.com/Eira/segagame_bot/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/Eira/segagame_bot/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/Eira/segagame_bot/branch/main/graph/badge.svg?token=VBFPMKSW3L)](https://codecov.io/gh/Eira/segagame_bot)
 
 Simple bot for the project SegaGame.
 
