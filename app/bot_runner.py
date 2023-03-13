@@ -1,13 +1,12 @@
 """Bot runner."""
 import logging
 
-from aiogram import Bot, Dispatcher, filters
+from aiogram import Dispatcher, filters
 from aiogram.utils import executor
 
 from app import buttons, common_handlers
+from app.bot_setup import bot
 from app.settings import app_settings
-
-bot = Bot(token=app_settings.bot_token)
 
 
 def main() -> None:
