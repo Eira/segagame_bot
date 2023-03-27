@@ -2,7 +2,7 @@
 
 from aiogram import types
 
-from app.bot_runner import bot
+from app.bot_setup import bot
 from app.buttons import BUY_TOKEN_BUTTON, SHOW_CHATS_BUTTON, SHOW_INFO_BUTTON, SHOW_VIDEO_BUTTON
 from app.settings import app_settings
 
