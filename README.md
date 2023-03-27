@@ -4,10 +4,10 @@
 [![tests](https://github.com/Eira/segagame_bot/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/Eira/segagame_bot/actions/workflows/tests.yml)
 [![codecov](https://codecov.io/gh/Eira/segagame_bot/branch/main/graph/badge.svg?token=VBFPMKSW3L)](https://codecov.io/gh/Eira/segagame_bot)
 
-Simple bot for the project SegaGame.
+Information bot for the project SegaGame.
 
 ### Links
-[Stage bot](t.me/SegaGame_stage_bot)
+[Stage bot](https://t.me/SegaGame_stage_bot)
 
 ### Local setup
 ```shell
